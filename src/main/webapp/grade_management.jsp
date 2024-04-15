@@ -3,21 +3,6 @@
 
 <p>成績管理</p>
 
-<%
-    Connection conn = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-
-    try {
-        // データベースへの接続
-        Class.forName("org.h2.Driver");
-        conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
-        
-        // 科目を取得するクエリの実行
-        stmt = conn.createStatement();
-        rs = stmt.executeQuery("SELECT NAME FROM SUBJECT");
-%>
-
 
 <p>入学年度</p>
 <select name="nyugaku">
@@ -38,28 +23,7 @@ out.print("<option value=\"" + i + "\">" + i + "</option>");
 </select>
 </p>
 
-<p>科目<p>
-<select name="subject">
-<%
-// 科目名をセレクトボックスに追加
- while(rs.next()) {
- %>
-<option><%= rs.getString("NAME") %></option>
-<%
-                }
-            %>
-</select>
-        
-<%
-    } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        // リソースの解放
-        if(rs != null) rs.close();
-        if(stmt != null) stmt.close();
-        if(conn != null) conn.close();
-    }
-%>        
+            
 
 <p>回数</p>
 <select name="kaisu">
@@ -74,3 +38,6 @@ out.print("<option value=\"" + i + "\">" + i + "</option>");
 
 
 <%@include file="../footer.html"%>
+
+
+あああ
