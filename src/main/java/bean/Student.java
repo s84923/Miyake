@@ -51,4 +51,4 @@ public class Student {
 			return schoolYear;
 	    }
 		
-}
+}あ
