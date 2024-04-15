@@ -17,20 +17,30 @@ public class Student {
 		public String getName() {
 			return name;
 	    }
-		public void setEntYear(String ent) {
-				this.password=password;
+		public void setEntYear(int entYear) {
+				this.entYear=entYear;
 		}
-		public String getName() {
-			return name;
+		public String getDassNum() {
+			return dassNum;
 	    }
-		public void setName(String name) {
-				this.name=name;
+		public void setDassNum(String dassNum) {
+				this.dassNum=dassNum;
+		}
+		public boolean getisAttend() {
+			return isAttend;
+	    }
+		public void setAttend(boolean isAttend) {
+				this.isAttend=isAttend;
 		}
 		public School getSchool() {
 			return school;
 	    }
-		public void setSchool(String School) {
+		public void setSchool(School school) {
 				this.school=school;
-		}		
+		}
+		public int getSchoolYear() {
+			return schoolYear;
+	    }
+		
 }
-}
+
