@@ -1,7 +1,7 @@
 package bean;
 import student.School;
 
-public class Student {
+public class Student implements java.io.Serializable {
 
 		private String no;
 		private String name;
