@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-import bean.Product;
+import bean.Student;
+import bean.Teecher;
 
 public class StudentDAO extends DAO {
-	public boolean insert(List<Item> cart, String name, String address) throws Exception {
+	public boolean insert(List<Student> cart, String name, String address) throws Exception {
 		Connection con=getConnection();
 		con.setAutoCommit(false);
 
-		for (Item item : cart) {
+		for ( : ) {
 			PreparedStatement st=con.prepareStatement(
 				"insert into purchase values(null, ?, ?, ?, ?, ?, ?)");
 			Product p=item.getProduct();
