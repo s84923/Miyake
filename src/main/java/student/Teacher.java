@@ -28,5 +28,5 @@ public class Teacher {
 	    }
 		public void setSchool(String School) {
 				this.school=school;
-		}		
+		}	
 }
