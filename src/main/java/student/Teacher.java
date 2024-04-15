@@ -3,7 +3,7 @@ public class Teacher {
 		private String id;
 		private String password;
 		private String name;
-		private School school;
+		private String school;
 		
 		public String getId() {
 			return id;
@@ -23,10 +23,10 @@ public class Teacher {
 		public void setName(String name) {
 				this.name=name;
 		}
-		public School getSchool() {
+		public String getSchool() {
 			return school;
 	    }
-		public void setSchool(String School) {
+		public void setSchool(String school) {
 				this.school=school;
 		}	
-}a
+}
