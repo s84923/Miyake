@@ -9,6 +9,7 @@ public class Student {
 		private School school;
 		private int schoolYear;
 		
+		
 		public String getNo() {
 			return no;
 	    }
