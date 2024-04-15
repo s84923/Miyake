@@ -1,4 +1,4 @@
-
+package student;
 public class Student {
 
 		private String no;
@@ -7,6 +7,7 @@ public class Student {
 		private String dassNum;
 		private boolean isAttend;
 		private School school;
+		private int schoolYear;
 		
 		public String getNo() {
 			return no;
@@ -16,6 +17,12 @@ public class Student {
 		}
 		public String getName() {
 			return name;
+	    }
+		public void setName(String name) {
+			    this.name=name;
+		}
+		public int getEntYear() {
+			return entYear;
 	    }
 		public void setEntYear(int entYear) {
 				this.entYear=entYear;
