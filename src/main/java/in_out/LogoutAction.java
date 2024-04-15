@@ -1,4 +1,4 @@
-package chapter24;
+package in_out;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
