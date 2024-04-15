@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import bean.Customer;
-public class StudentDAO extends DAO {
+public class CustomerDAO extends DAO {
 
-	public Studdent search(String login,String password) 
+	public Customer search(String login,String password) 
 			throws Exception { 
-		Student student=null; 
+		Customer customer=null; 
 
 		Connection con=getConnection(); 
 		
