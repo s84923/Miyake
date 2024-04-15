@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-package DAO;
+package dao;
 
 public class StudentDAO {
 	private String baseSQL;
