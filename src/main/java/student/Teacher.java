@@ -1,4 +1,4 @@
-
+package student; 
 public class Teacher {
 		private String id;
 		private String password;
