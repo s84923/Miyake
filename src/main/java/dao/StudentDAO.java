@@ -2,33 +2,39 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.List;
 
-import bean.Customer;
-public class CustomerDAO extends DAO {
+import bean.Product;
 
-	public Customer search(String login,String password) 
-			throws Exception { 
-		Customer customer=null; 
+public class StudentDAO extends DAO {
+	public boolean insert(List<Item> cart, String name, String address) throws Exception {
+		Connection con=getConnection();
+		con.setAutoCommit(false);
 
-		Connection con=getConnection(); 
-		
-		PreparedStatement st;
-		st=con.prepareStatement(
-			"select * from customer where login=? and password=?");
-		st.setString(1,login);
-		st.setString(2,password);
-		ResultSet rs=st.executeQuery();
+		for (Item item : cart) {
+			PreparedStatement st=con.prepareStatement(
+				"insert into purchase values(null, ?, ?, ?, ?, ?, ?)");
+			Product p=item.getProduct();
+			st.setInt(1, p.getId());
+			st.setString(2, p.getName());
+			st.setInt(3, p.getPrice());
+			st.setInt(4, item.getCount());
+			st.setString(5, name);
+			st.setString(6, address);
+			int line=st.executeUpdate();
+			st.close();
 
-		while (rs.next()) {
-			customer=new Customer();
-			customer.setId(rs.getInt("id"));
-			customer.setLogin(rs.getString("login"));
-			customer.setPassword(rs.getString("password"));
+			if (line!=1) {
+				con.rollback();
+				con.setAutoCommit(true);
+				con.close();
+				return false;
+			}
 		}
 
-		st.close();
-		con.close(); 
-		return customer;
+		con.commit();
+		con.setAutoCommit(true);
+		con.close();
+		return true;
 	}
 }
