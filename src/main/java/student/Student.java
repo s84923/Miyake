@@ -8,6 +8,7 @@ public class Student {
 		private boolean isAttend;
 		private School school;
 		
+		
 		public String getNo() {
 			return no;
 	    }
