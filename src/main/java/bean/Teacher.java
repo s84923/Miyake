@@ -31,4 +31,3 @@ package bean;
 				this.school=school;
 		}	
 }
-
