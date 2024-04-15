@@ -27,6 +27,6 @@ public class Teacher {
 			return school;
 	    }
 		public void setSchool(String School) {
-				this.school;
+				this.school=school;
 		}		
 }
