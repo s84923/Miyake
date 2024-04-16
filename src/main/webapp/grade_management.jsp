@@ -25,7 +25,50 @@ out.print("<option value=\"" + i + "\">" + i + "</option>");
 </select>
 </p>
 
-            
+<body>
+
+<%
+    Connection conn = null; 
+    Statement stmt = null;
+    ResultSet rs = null;
+
+    try {
+        // データベースへの接続
+        Class.forName("org.h2.Driver");
+        conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
+        
+        // 生徒の名前を取得するクエリの実行
+        stmt = conn.createStatement();
+        rs = stmt.executeQuery("SELECT NAME FROM SUBJECT");
+%>
+
+    
+    <form action="kadai4444" method="post">
+        <label for="subject">科目</label>
+        <br><br>
+        <select name="subject">
+            <%
+                // 生徒の名前をセレクトボックスに追加
+                while(rs.next()) {
+            %>
+                <option><%= rs.getString("NAME") %></option>
+            <%
+                }
+            %>
+        </select>
+    </form>
+
+<%
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        // リソースの解放
+        if(rs != null) rs.close();
+        if(stmt != null) stmt.close();
+        if(conn != null) conn.close();
+    }
+%>
+</body>
 
 <p>回数</p>
 <select name="kaisu">
