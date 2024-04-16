@@ -1,5 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@include file="../header.html"%>
+<%@ page import="dao.DAO" %>
+
 
 <p>成績管理</p>
 
@@ -37,7 +39,7 @@ out.print("<option value=\"" + i + "\">" + i + "</option>");
 
 
 
+
 <%@include file="../footer.html"%>
 
 
-あああ
