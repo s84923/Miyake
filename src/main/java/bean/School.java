@@ -1,4 +1,4 @@
-package student;
+package bean;
 public class School {
 	private String cd;
 	private String name;

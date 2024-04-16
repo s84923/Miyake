@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 
 import bean.Student;
-import bean.Teecher;
+import bean.Teacher;
 
 public class StudentDAO extends DAO {
 	public boolean insert(List<Student> cart, String name, String address) throws Exception {
