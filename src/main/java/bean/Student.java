@@ -1,5 +1,5 @@
 package bean;
-import student.School;
+
 
 public class Student implements java.io.Serializable {
 
