@@ -1,10 +1,2 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Servlet/JSP Samples</title>
-</head>
-<body>
-Welcome!
-</body>
-</html>
+<%@page contentType="text/html:charset=UTF-8"%>
+<%@include file="../headr.html.html"%>
