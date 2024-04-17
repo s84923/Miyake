@@ -4,9 +4,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>得点管理システム</title>
+<h2>得点管理システム</h2>
 </head>
 <body>
+<h2>学生管理</h2>
+<label>入学年度
+  <s<form action="#" method="GET">
+      <select name="f1" id="name">
+        <option value="when">------</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+        <option value="2021">2021</option>
+      </select>
+      <label>クラス
+  <s<form action="#" method="GET">
+      <select name="f2" id="name">
+        <option value="where">------</option>
+        <option value="201">201</option>
+        <option value="131">131</option>
+        <option value="101">101</option>
+       </select>
+    <input type="checkbox" name="f3" value="zaigaku">
+    <label>在学中</label>
+</form>
+
+      <input type="submit" name="submit" value="絞込み" />
+    </form>
+    </optgroup>
+  </select>
+</label>
 
 </body>
 </html>
