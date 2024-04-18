@@ -2,6 +2,7 @@ package bean;
 public class School {
 	private String cd;
 	private String name;
+	private String result;
 	
 	public String getCd() {
 		return cd;
@@ -14,5 +15,8 @@ public class School {
     }
 	public void setName(String name) {
 			this.name=name;
+	}
+	public String ResultSet() {
+		 return result;
 	}
 }
