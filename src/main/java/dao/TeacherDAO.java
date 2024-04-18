@@ -13,6 +13,6 @@ public class TeacherDAO extends DAO{
 				ds=(DataSource)ic.lookup("java:/comp/env/jdbc/zaiko");
 		
 		}
-		return ds.get();
+		return ds.getConnection();
 		}
 }
