@@ -1,14 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>得点管理システム</title>
-<h2>得点管理システム</h2>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="../header.html"%>
+<%@ page import="dao.DAO" %>
+
+
 <h2>学生管理</h2>
+
 <label>入学年度
   <s<form action="#" method="GET">
       <select name="f1" id="name">
@@ -30,6 +26,9 @@
 </form>
 
       <input type="submit" name="submit" value="絞込み" />
+
+<%@include file="../footer.html"%>
+      
     </form>
     </optgroup>
   </select>
