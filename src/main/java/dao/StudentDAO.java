@@ -21,5 +21,5 @@ public interface StudentDAO {
 
     boolean save(Student student); // 学生情報を保存するメソッド
 
-    boolean update(Student student); // 学生情報を更新するメソッド
+    boolean delete(Student student); // 学生情報を更新するメソッド
 }
