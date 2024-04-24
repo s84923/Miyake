@@ -1,8 +1,8 @@
 package error;
-public class Error {
+public class error {
     private String errorMessage;
 
-    public Error() {
+    public error() {
         this.errorMessage = "固定値"; // 初期値
     }
 

@@ -20,9 +20,14 @@
          <label for="studentId">学生番号</label>
         <input type="text" id="studentId" name="studentId" maxlength="10" required placeholder="学生番号を入力してください">
         <br><br>
-        <label for="name">氏名:</label>
+        <label for="name">氏名</label>
         <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください">
         <br><br>
+        <label for="name">クラス</label>
+        <select type="select" id="name" name="class_num">
+        
+       
     </form>
+     <button type="submit" name="end">登録して終了</button>
 </body>
 </html>
