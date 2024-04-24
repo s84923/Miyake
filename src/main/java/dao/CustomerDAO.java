@@ -5,19 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import bean.Customer;
+
 public class CustomerDAO extends DAO {
+	public Customer search(String login, String password)
+		throws Exception {
+		Customer customer=null;
 
-	public Customer search(String login,String password) 
-			throws Exception { 
-		Customer customer=null; 
+		Connection con=getConnection();
 
-		Connection con=getConnection(); 
-		
 		PreparedStatement st;
 		st=con.prepareStatement(
 			"select * from customer where login=? and password=?");
-		st.setString(1,login);
-		st.setString(2,password);
+		st.setString(1, login);
+		st.setString(2, password);
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()) {
@@ -28,7 +28,7 @@ public class CustomerDAO extends DAO {
 		}
 
 		st.close();
-		con.close(); 
+		con.close();
 		return customer;
 	}
 }

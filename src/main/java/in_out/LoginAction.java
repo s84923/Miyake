@@ -21,9 +21,9 @@ public class LoginAction extends Action {
 			
 			if(customer!=null) {
 				session.setAttribute("customer", customer);
-				return"menu.jsp";
+				return"login-out.jsp";
 			}
 			
-			return "login-in.jsp";
+			return "login-error.jsp";
 	}
 }
