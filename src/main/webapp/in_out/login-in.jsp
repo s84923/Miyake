@@ -18,4 +18,4 @@
   <p><input type="submit" value="ログイン"></p>
 </form>
 
-<%@include file="../footer.html" %>ile="../footer.html" %>
+<%@include file="../footer.html" %>
