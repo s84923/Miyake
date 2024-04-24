@@ -1,7 +1,7 @@
 package test;
 
 import student.School;
-
+import student.Student;
 
 public class Test {
 		private Student student;
@@ -41,6 +41,12 @@ public class Test {
 	    }
 		public void setGetNo(int no) {
 				this.no=no;
+		}
+		public int GetPoint() {
+			return point;
+	    }
+		public void setPoint(int point) {
+				this.point=point;
 		}
 		
 }
