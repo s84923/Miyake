@@ -1,5 +1,5 @@
 package bean;
-import student.School;
+
 
 public class Student implements java.io.Serializable {
 
@@ -9,7 +9,7 @@ public class Student implements java.io.Serializable {
 		private String dassNum;
 		private boolean isAttend;
 		private School school;
-		private int schoolYear;
+		private int schoolyear;
 		
 		public String getNo() {
 			return no;
@@ -48,9 +48,7 @@ public class Student implements java.io.Serializable {
 				this.school=school;
 		}
 		public int getSchoolYear() {
-			return schoolYear;
+			return schoolyear;
 	    }
 		
 }
-
-

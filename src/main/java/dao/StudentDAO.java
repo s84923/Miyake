@@ -1,41 +1,25 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
+import bean.School;
 import bean.Student;
-import bean.Teacher;
 
-public class StudentDAO extends DAO {
-	public boolean insert(List<Student> cart, String name, String address) throws Exception {
-		Connection con=getConnection();
-		con.setAutoCommit(false);
+public interface StudentDAO {
+    String baseSql = ""; // SQLクエリのベース文
 
-		for ( : ) {
-			PreparedStatement st=con.prepareStatement(
-				"insert into purchase values(null, ?, ?, ?, ?, ?, ?)");
-			Product p=item.getProduct();
-			st.setInt(1, p.getId());
-			st.setString(2, p.getName());
-			st.setInt(3, p.getPrice());
-			st.setInt(4, item.getCount());
-			st.setString(5, name);
-			st.setString(6, address);
-			int line=st.executeUpdate();
-			st.close();
+    Student get(String no); // 学生情報を取得するメソッド
 
-			if (line!=1) {
-				con.rollback();
-				con.setAutoCommit(true);
-				con.close();
-				return false;
-			}
-		}
+    List<Student> postFilter(ResultSet resultSet, School school); // フィルタリングされた学生情報を加工して取得するメソッド
 
-		con.commit();
-		con.setAutoCommit(true);
-		con.close();
-		return true;
-	}
+    List<Student> filter(School school, int entYear, String dassNum, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
+
+    List<Student> filter(School school, int entYear, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
+
+    List<Student> filter(School school, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
+
+    boolean save(Student student); // 学生情報を保存するメソッド
+
+    boolean update(Student student); // 学生情報を更新するメソッド
 }

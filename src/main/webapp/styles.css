@@ -1,45 +1,28 @@
-/* CSSファイル */
-/* 画面全体のスタイル */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+/* メニューのスタイル */
+.menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #f0f0f0;
 }
 
-/* ヘッダーのスタイル */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
+/* ボタンのスタイル */
+.button {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #ff0000; /* 赤色のボタン */
+  color: white;
+  text-align: center;
+  text-decoration: none;
 }
 
-/* メインコンテンツのスタイル */
-main {
-    margin: 20px;
+/* ボタンのラベルテキスト */
+.button-text {
+  font-size: 16px;
+  font-weight: bold;
 }
 
-/* テーブルのスタイル */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-/* フッターのスタイル */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+/* その他の要素のスタイルはここに追加 */
