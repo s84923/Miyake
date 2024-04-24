@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="../header.html" %>
 <form action="Login.action" method="post">
-  <p>ログイン名<input type="text" name="login"></p>
-  <p>パスワード<input type="password" name="password" id="passwordField"></p>
+  <p>ログイン名<input type="text" name="login" value="" required></p>
+  <p>パスワード<input type="password" name="password" id="passwordField" value="" required></p>
   <input type="checkbox" onclick="togglePasswordVisibility()">パスワードを表示
 
   <script>
