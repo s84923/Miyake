@@ -1,7 +1,7 @@
 package test;
 
-import student.School;
-import student.Student;
+import bean.School;
+import bean.Student;
 
 public class Test {
 		private Student student;
