@@ -17,6 +17,7 @@
                 <option value="<%= year %>"><%= year %></option>
             <% } %>
         </select>
+        <br><br>
          <label for="studentId">学生番号</label>
         <input type="text" id="studentId" name="studentId" maxlength="10" required placeholder="学生番号を入力してください">
         <br><br>
@@ -24,10 +25,11 @@
         <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください">
         <br><br>
         <label for="name">クラス</label>
-        <select type="select" id="name" name="class_num">
-        
-       
-    </form>
-     <button type="submit" name="end">登録して終了</button>
+        <select type="select" id="name" name="class_num"></select>
+        <br><br>
+        <button type="submit" name="end">登録して終了</button>
+        <br><br>
+        <a href="#">戻る</a>
+     </form>
 </body>
 </html>
