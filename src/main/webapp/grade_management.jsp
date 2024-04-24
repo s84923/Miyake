@@ -37,7 +37,7 @@ out.print("<option value=\"" + i + "\">" + i + "</option>");
         Class.forName("org.h2.Driver");
         conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
         
-        // 生徒の名前を取得するクエリの実行
+        // 科目名を取得するクエリの実行
         stmt = conn.createStatement();
         rs = stmt.executeQuery("SELECT NAME FROM SUBJECT");
 %>
