@@ -126,8 +126,8 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
         }
 
         // 一括更新ボタン
-        out.println("<form method=\"post\" action=\"updateAllPoints\">");
-        out.println("<input type=\"hidden\" name=\"nyugaku\" value=\"" + entYear + "\">");
+		out.println("<form method=\"post\" action=\"/team_miyake/test/updateallpoints\">");
+		out.println("<input type=\"hidden\" name=\"nyugaku\" value=\"" + entYear + "\">");
         out.println("<input type=\"hidden\" name=\"class\" value=\"" + classNum + "\">");
         out.println("<input type=\"hidden\" name=\"subject\" value=\"" + subjectName + "\">");
         out.println("<input type=\"hidden\" name=\"kaisu\" value=\"" + testNo + "\">");
