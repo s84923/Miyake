@@ -38,7 +38,6 @@ public class Teacher implements java.io.Serializable {
         this.school = school;
     }
 
-
     public void setLogin(String login) {
         this.id = login;
     }
