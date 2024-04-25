@@ -21,8 +21,11 @@
         <input type="text" id="studentId" name="studentId" maxlength="10" required placeholder="学生番号を入力してください">
         <br><br>
         <label for="name">氏名:</label>
+        <br></br>
         <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください">
         <br><br>
+        <button>変更</button>
+        
     </form>
 </body>
 </html>
