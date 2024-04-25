@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>得点管理システム</title>
-</head>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@include file="../header.html" %>
 <body>
     <h1>学生情報登録</h1>
     <form>
@@ -21,7 +17,7 @@
         <input type="text" id="studentId" name="studentId" maxlength="10" required placeholder="学生番号を入力してください">
         <br><br>
         <label for="name">氏名:</label>
-        <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください">
+        <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください" value=""required>
         <br><br>
         <label for="classId">クラス番号</label>
       <s<form action="#" method="GET">
@@ -31,8 +27,12 @@
         <option value="131">131</option>
         <option value="101">101</option>
        </select>
-       <input type="submit" name="submit" value="絞込み" />
+       <br><br>
+       <label>在学中</label>
+           <input type="checkbox" name="si_attend" value="zaigaku">
+ 		<br>
+       <button type="submit" name="end">変更</button>
+       <br>
+       <a href="#">戻る</a>
     </form>
-</body>
-</html>
-
+<%@include file="../footer.html" %>
