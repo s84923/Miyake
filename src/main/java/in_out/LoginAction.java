@@ -9,8 +9,6 @@ import tool.Action;
 
 public class LoginAction extends Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        HttpSession session = request.getSession();
-
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
@@ -18,10 +16,13 @@ public class LoginAction extends Action {
         Teacher teacher = dao.login(login, password);
 
         if (teacher != null) {
-            session.setAttribute("teacher", teacher);
-            return "login-out.jsp";
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedInTeacher", teacher);
+            return "../index.jsp";
+        } else {
+            // エラーメッセージをリクエスト属性に設定
+            request.setAttribute("errorMessage", "ログインに失敗しました。IDまたはパスワードが正しくありません。");
+            return "login.jsp";
         }
-
-        return "login-error.jsp";
     }
 }
