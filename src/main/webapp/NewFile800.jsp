@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@include file="../header.html"%>
-<%@ page import="dao.DAO" %>
+
 
 <p>成績管理</p>
 
@@ -78,6 +78,10 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
     String classNum = request.getParameter("class");
     String subjectName = request.getParameter("subject");
     String testNo = request.getParameter("kaisu");
+    String point = request.getParameter("tensu");
+    String studentno = request.getParameter("bangou");
+
+
 
     Connection connPost = null; 
     PreparedStatement pstmtPost = null;
@@ -106,6 +110,9 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
         pstmtPost.setString(2, classNum);
         pstmtPost.setString(3, subjectName);
         pstmtPost.setString(4, testNo);
+      
+
+
 
         result = pstmtPost.executeQuery();
 
@@ -117,7 +124,7 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
             out.println("氏名: " + result.getString("NAME") + "<br>");
 
             // テストポイントの入力フォーム
-            out.println("<form method=\"post\" action=\"updatePoints\">");
+            out.println("<form method=\"post\" action=\"/team_miyake/test/updateallpoints\">");
             out.println("<input type=\"hidden\" name=\"studentNo\" value=\"" + result.getString("NO") + "\">");
             out.println("<input type=\"hidden\" name=\"subjectName\" value=\"" + subjectName + "\">");
             out.println("<input type=\"hidden\" name=\"testNo\" value=\"" + testNo + "\">");
@@ -126,8 +133,8 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
         }
 
         // 一括更新ボタン
-        out.println("<form method=\"post\" action=\"updateAllPoints\">");
-        out.println("<input type=\"hidden\" name=\"nyugaku\" value=\"" + entYear + "\">");
+		out.println("<form method=\"post\" action=\"/team_miyake/test/updateallpoints\">");
+		out.println("<input type=\"hidden\" name=\"nyugaku\" value=\"" + entYear + "\">");
         out.println("<input type=\"hidden\" name=\"class\" value=\"" + classNum + "\">");
         out.println("<input type=\"hidden\" name=\"subject\" value=\"" + subjectName + "\">");
         out.println("<input type=\"hidden\" name=\"kaisu\" value=\"" + testNo + "\">");

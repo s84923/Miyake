@@ -15,6 +15,4 @@ public class SubjectDAO {
 	}
 	return ds.getConnection();
 	}
-}
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

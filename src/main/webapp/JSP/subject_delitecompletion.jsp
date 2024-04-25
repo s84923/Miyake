@@ -13,5 +13,6 @@
 </head>
 <body>
 	<label>削除が完了しました</label>
-	
+	<br></br>
+	<a href="https://Subjects_management.list">科目一覧</a>
 </body>
