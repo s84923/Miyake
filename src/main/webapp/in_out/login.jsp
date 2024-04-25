@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="../header.html" %>
+<%@include file="../header.jsp" %>
 
 <%-- エラーメッセージの表示 --%>
 <% String errorMessage = (String)request.getAttribute("errorMessage"); %>
@@ -15,4 +15,4 @@
   <p><input type="submit" value="ログイン"></p>
 </form>
 
-<%@include file="../footer.html" %>
+<%@include file="../footer.jsp" %>
