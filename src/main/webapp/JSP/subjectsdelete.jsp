@@ -13,5 +13,7 @@
 <body>
 	<p label></p label>
     <br></br>
-    <button> 削除</button>
+    <button><a href="subjects_delete_fin.jsp"> 削除</button>
+    <br></br>
+    <a href="subject_management.jsp">戻る</a>
 </body>

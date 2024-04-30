@@ -20,7 +20,7 @@
 	<br>
     <input type="text" id="name" name="name" maxlength="30" required placeholder="科目名を入力してください">
     <br></br>
-    <button> 登録</button>
+    <button><a href="subjects_newregistion_fin.jsp"> 登録</button>
     <br>
-    <a href="https://">戻る</a>
+    <a href="subject_management.jsp">戻る</a>
 </body>
