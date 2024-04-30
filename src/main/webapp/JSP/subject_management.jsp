@@ -15,24 +15,23 @@
 <link a="he">
     <th>科目コード</th>
     <th>科目</th>
-    <a href="https://">新規登録</a>
+    <a href="subjects_newregistration.jsp">新規登録</a>
     
     
   <br></br>
-	<a href="https://">変更</a>
-	<a href="https://">削除</a>  
+	<a href="subjectschange.jsp">変更</a>
+	<a href="subjectsdelete.jsp">削除</a>  
   <br></br>
-	<a href="https://">変更</a>
-	<a href="https://">削除</a>  
+	<a href="subjectschange.jsp">変更</a>
+	<a href="subjectsdelete.jsp">削除</a>
   <br></br>
-	<a href="https://">変更</a>
-	<a href="https://">削除</a>  
+	<a href="subjectschange.jsp">変更</a>
+	<a href="subjectsdelete.jsp">削除</a>
   <br></br>
-	<a href="https://">変更</a>
-	<a href="https://">削除</a>  
+	<a href="subjectschange.jsp">変更</a>
+	<a href="subjectsdelete.jsp">削除</a>
   <br></br>
-	<a href="https://">変更</a>
-	<a href="https://">削除</a>
-
+	<a href="subjectschange.jsp">変更</a>
+	<a href=https://www.google.com/search?q=%E6%B0%B8%E9%87%8E%E8%8A%BD%E9%83%81&rlz=1C1JCYX_jaJP1090JP1090&oq=naganomei&gs_lcrp=EgZjaHJvbWUqCQgBEAAYBBiABDIGCAAQRRg5MgkIARAAGAQYgAQyCQgCEAAYBBiABDIJCAMQABgEGIAEMgkIBBAAGAQYgAQyCQgFEAAYBBiABDIJCAYQABgEGIAEMgkIBxAAGAQYgAQyCQgIEAAYBBiABDIJCAkQABgEGIAE0gEINTEyNmowajeoAgiwAgE&sourceid=chrome&ie=UTF-8">削除</a>
 </body>
 </html>
