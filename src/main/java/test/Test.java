@@ -2,11 +2,12 @@ package test;
 
 import bean.School;
 import bean.Student;
+import bean.Subject;
 
 public class Test {
 		private Student student;
 		private String classNum;
-		private String subject;
+		private Subject subject;
 		private School school;
 		private int no;
 		private int point;
@@ -24,10 +25,10 @@ public class Test {
 		public void setClassNum(String classNum) {
 				this.classNum=classNum;
 		}
-		public String getSubject() {
+		public Subject getSubject() {
 			return subject ;
 	    }
-		public void setSubject(String subject) {
+		public void setSubject(Subject subject) {
 				this.subject=subject;
 		}
 		public School getSchool() {
