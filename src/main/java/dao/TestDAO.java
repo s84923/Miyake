@@ -1,10 +1,12 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.List;
 
 import bean.School;
 import bean.Student;
+import bean.Subject;
 import test.Test;
 
 public interface TestDAO {
@@ -19,13 +21,12 @@ public interface TestDAO {
     
     List<Test> postFilter(ResultSet rSet, School school); // フィルタリングされた学生情報を加工して取得するメソッド
 
-    List<Student> filter(School school, int entYear, String dassNum, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
+    List<Test> filter(int entYear, String dassNum, Subject subject,int num, School school); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
 
-    List<Student> filter(School school, int entYear, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
-
-    List<Student> filter(School school, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
-
-    boolean save(Student student); // 学生情報を保存するメソッド
-
-    boolean update(Student student); // 学生情報を更新するメソッド
+    boolean save(List<Test> list);
+    boolean save(Test test,Connection connection);
+    boolean delete(List<Test> list); 
+    boolean delete(Test test,Connection connection); 
+    
 }
+
