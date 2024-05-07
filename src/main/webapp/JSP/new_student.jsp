@@ -29,16 +29,15 @@
 
         <br><br>
 
-        <button>変更</button>
         
-    </form>
+        
 
         <label for="name">クラス</label>
-        <select type="select" id="name" name="class_num"></select>
+        <select type="select" id="name" name="class_num"></select<button>変更</button>>
         <br><br>
         <button type="submit" name="end">登録して終了</button>
         <br><br>
-        <a href="#">戻る</a>
+        <a href="student_management.jsp">戻る</a>
      </form>
 
 </body>

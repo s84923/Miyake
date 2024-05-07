@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <%@include file="../header.jsp" %>
 <body>
     <h1>学生情報登録</h1>
@@ -33,6 +32,6 @@
  		<br>
        <button type="submit" name="end">変更</button>
        <br>
-       <a href="#">戻る</a>
+       <a href="student_management.jsp">戻る</a>
     </form>
 <%@include file="../footer.jsp" %>
