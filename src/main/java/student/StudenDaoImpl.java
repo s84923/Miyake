@@ -1,4 +1,4 @@
-package student;
+ackage student;
 
 public class StudenDaoImpl {
 

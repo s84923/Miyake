@@ -1,25 +1,58 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
-import bean.School;
 import bean.Student;
 
-public interface StudentDAO {
-    String baseSql = ""; // SQLクエリのベース文
+public class StudentDAO {
+    public List<Student> getFilteredStudents(String enrollmentYear, String className, boolean isEnrolled) throws Exception {
+        List<Student> students = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
-    Student get(String no); // 学生情報を取得するメソッド
+        try {
+            DAO dao = new DAO();
+            conn = dao.getConnection();
 
-    List<Student> postFilter(ResultSet resultSet, School school); // フィルタリングされた学生情報を加工して取得するメソッド
+            // SQL文の作成
+            String sql = "SELECT * FROM your_table WHERE entYear = ? AND dassNum = ? AND isAttend = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, enrollmentYear);
+            stmt.setString(2, className);
+            stmt.setBoolean(3, isEnrolled);
 
-    List<Student> filter(School school, int entYear, String dassNum, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
+            // SQLの実行
+            rs = stmt.executeQuery();
 
-    List<Student> filter(School school, int entYear, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
-
-    List<Student> filter(School school, boolean isAttend); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
-
-    boolean save(Student student); // 学生情報を保存するメソッド
-
-    boolean update(Student student); // 学生情報を更新するメソッド
+            // 結果の処理
+            while (rs.next()) {
+                Student student = new Student();
+                // ここでResultSetからStudentオブジェクトを作成し、リストに追加する処理を実装する
+                student.setNo(rs.getString("no"));
+                student.setName(rs.getString("name"));
+                student.setEntYear(rs.getInt("entYear"));
+                student.setDassNum(rs.getString("dassNum"));
+                student.setAttend(rs.getBoolean("isAttend"));
+                // 他のカラムも同様に設定する
+                students.add(student);
+            }
+        } finally {
+            // リソースの解放
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return students;
+    }
 }
