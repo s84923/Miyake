@@ -35,4 +35,4 @@
        <br>
        <a href="#">戻る</a>
     </form>
-<%@include file="../footer.html" %>
+<%@include file="../footer.jsp" %>

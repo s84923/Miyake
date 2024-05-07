@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../header.html"%>
+<%@include file="../header.jsp"%>
 <%@ page import="dao.DAO" %>
 
 
@@ -30,5 +30,5 @@
 
       <input type="submit" name="submit" value="絞込み" />
 
-<%@include file="../footer.html"%>
+<%@include file="../footer.jsp"%>
       
