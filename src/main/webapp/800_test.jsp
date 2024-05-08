@@ -3,40 +3,54 @@
 <%@include file="../sidebar.jsp"%>
 
 
-<h2 style="
+<h2 class="studentmanage"
+	style="
 	width:79%;
 	background-color:#DCDCDC; 
 	padding: 5px; 
-	margin-bottom: 10%;
+	margin-bottom: 5%;
 	margin-left: 20%;">成績管理</h2>
-
-
-<div style="text-align: center; overflow: hidden;">
-<form action="../student/StudentCreate.action" method="post">
-	<label style="float: left; padding-left: 170px">入学年度</label><br> 
-		<select class="form-select" id="ent_year" name="ent_year" style="width: 700px; height: 40px;">
-			<option value="0">------</option>
-			<option value="2020">2020</option>
-			<option value="2021">2021</option>
-			<option value="2022">2022</option>
-			<option value="2023">2023</option>
-			<option value="2024">2024</option>
-		</select>
+<div style="width: 50%; margin-left: 30%">
+	<section class="me-4" style="width: 100%;">
+	<div class="my-2 text-end px-4" style="margin-bottom: 1rem; margin-left: 500px;">
+		<a href="../studentmanage/insert.jsp">新規登録</a>
+	</div>
+	<form action="../student/StudentList.action" method="post">
+	<div style="width: 700px;
+				height: 150px;
+				box-sizing: border-box;
+ 				margin: 1em 0;
+  				padding: 3rem;
+  				border-radius: 1em;
+  				border: 2px solid gainsboro;">
+				<label>入学年度</label> 
+				<label style="padding-left: 150px;">クラス番号</label><br>
+		<div style="display: flex; align-items: center;">
+				<select class="form-select" id="select_ent_year" name="f1" 
+				style="width: 200px; height: 30px; border-radius: 10px; padding-left: 3px; font-size: 18px;">
+					<option value="0">------</option>
+					<option value="2020">2020</option>
+					<option value="2021">2021</option>
+					<option value="2022">2022</option>
+					<option value="2023">2023</option>
+					<option value="2024">2024</option>
+				</select> 
+				<select class="form-select"id="select_class_num" name="f2" 
+				style="width: 200px; height: 30px; margin-left: 20px; border-radius: 10px; padding-left: 3px; font-size: 18px;">
+					<option value="0">------</option>
+					<option value="101">101</option>			
+					<option value="131">131</option>
+					<option value="201">201</option>
+				</select>
 		
-	<br>
-
-    <label style="float: left; padding-left: 170px">クラス</label><br>
-		<select class="form-select" id="class_num" name="class_num" style="width: 700px; height: 40px;">
-			<option value="0">------</option>
-			<option value="131">131</option>
-			<option value="201">201</option>
-			<option value="101">101</option>
-		</select>
 
     <br>
-	<label style="float: left; padding-left: 170px">科目</label><br>
+	<label style=""padding-left: 150px;">科目</label><br>
 		<select class="form-select" id="class_num" name="subject" style="width: 700px; height: 40px;">
-		
+		<input class="form-check-input" type="checkbox"id="select_is_attend" name="f3" value="true">
+			</div>
+			</div>		
+			</form>
         <%
         Connection conn = null; 
         PreparedStatement pstmt = null;
