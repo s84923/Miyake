@@ -1,32 +1,44 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
+import java.sql.SQLException;
 
-import bean.School;
-import bean.Student;
-import bean.Subject;
-import test.Test;
+public class TestDAO {
 
-public interface TestDAO {
-    String baseSql = ""; // SQLクエリのベース文
+    public ResultSet getTestResults(String entYear, String classNum, String subjectName, String testNo) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet result = null;
 
-    Test get(Student student); // 学生情報を取得するメソッド
-    Test get(Subject subject);
-    Test get(School school);
-    Test get(int no);
-    
-    
-    
-    List<Test> postFilter(ResultSet rSet, School school); // フィルタリングされた学生情報を加工して取得するメソッド
+        try {
+            conn = DAO.getConnection();
 
-    List<Test> filter(int entYear, String dassNum, Subject subject,int num, School school); // 条件に基づいて学生情報をフィルタリングして取得するメソッド
+            String sql = "SELECT STUDENT.ENT_YEAR, STUDENT.CLASS_NUM, STUDENT.NO, STUDENT.NAME, TEST.POINT " +
+                         "FROM STUDENT, SUBJECT, TEST " +
+                         "WHERE STUDENT.SCHOOL_CD = SUBJECT.SCHOOL_CD AND " +
+                         "      STUDENT.SCHOOL_CD = TEST.SCHOOL_CD AND " +
+                         "      STUDENT.NO = TEST.STUDENT_NO AND " +
+                         "      SUBJECT.CD = TEST.SUBJECT_CD AND " +
+                         "      STUDENT.CLASS_NUM = TEST.CLASS_NUM AND " +
+                         "      STUDENT.ENT_YEAR = ? AND " +
+                         "      STUDENT.CLASS_NUM = ? AND " +
+                         "      SUBJECT.NAME = ? AND " +
+                         "      TEST.NO = ?";
 
-    boolean save(List<Test> list);
-    boolean save(Test test,Connection connection);
-    boolean delete(List<Test> list); 
-    boolean delete(Test test,Connection connection); 
-    
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, entYear);
+            pstmt.setString(2, classNum);
+            pstmt.setString(3, subjectName);
+            pstmt.setString(4, testNo);
+
+            result = pstmt.executeQuery();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }
-
