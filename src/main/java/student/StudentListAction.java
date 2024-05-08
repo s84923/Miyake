@@ -7,9 +7,7 @@ import dao.StudentDAO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class StudentListAction extends StudentListAction {
-
-    @Override
+public class StudentListAction {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // フォームからの入力を取得
         String enrollmentYear = request.getParameter("f1");
@@ -26,4 +24,5 @@ public class StudentListAction extends StudentListAction {
         // 結果を表示するJSPにフォワード
         return "/studentlist.jsp";
     }
+    
 }
