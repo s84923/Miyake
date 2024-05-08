@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@include file="../header.html" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@include file="../header.jsp" %>
 <body>
 <h2>科目情報登録</h2>
 	<label><p>登録が完了しました</p></label>
@@ -7,4 +7,4 @@
 		<br></br>
 		<a href="subject_management.jsp">科目一覧</a>
 </body>
-<%@include file="../footer.html" %>
+<%@include file="../footer.jsp" %>

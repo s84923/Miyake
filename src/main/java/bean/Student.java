@@ -50,5 +50,16 @@ public class Student implements java.io.Serializable {
 		public int getSchoolYear() {
 			return schoolyear;
 	    }
-		
+		public String getClassNum() {
+		    return dassNum; 
+		}
+
+		public boolean isAttend() {
+		    return isAttend;
+		}
+
+		public String getSchoolCd() {
+		    return school.getSchoolCd(); 
+		}
+
 }

@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@include file="../header.html" %>
+<%@include file="../header.jsp" %>
 <head>
     <meta charset="UTF-8">
     <title>得点管理システム</title>
@@ -21,27 +21,24 @@
          <label for="studentId">学生番号</label>
         <input type="text" id="studentId" name="studentId" maxlength="10" required placeholder="学生番号を入力してください" value="" required>
         <br><br>
-<<<<<<< HEAD
         <label for="name">氏名:</label>
         <br></br>
         <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください">
-=======
         <label for="name">氏名</label>
         <input type="text" id="name" name="name" maxlength="30" required placeholder="氏名を入力してください" value="" required>
->>>>>>> branch 'master' of https://github.com/s84923/Miyake.git
+
         <br><br>
-<<<<<<< HEAD
-        <button>変更</button>
+
         
-    </form>
-=======
+        
+
         <label for="name">クラス</label>
-        <select type="select" id="name" name="class_num"></select>
+        <select type="select" id="name" name="class_num"></select<button>変更</button>>
         <br><br>
         <button type="submit" name="end">登録して終了</button>
         <br><br>
-        <a href="#">戻る</a>
+        <a href="student_management.jsp">戻る</a>
      </form>
->>>>>>> branch 'master' of https://github.com/s84923/Miyake.git
+
 </body>
 </html>
