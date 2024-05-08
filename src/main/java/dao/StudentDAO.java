@@ -1,5 +1,3 @@
-package dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +14,7 @@ public class StudentDAO {
         ResultSet rs = null;
 
         try {
+            // データベースとの接続を確立
             DAO dao = new DAO();
             conn = dao.getConnection();
 
@@ -31,8 +30,8 @@ public class StudentDAO {
 
             // 結果の処理
             while (rs.next()) {
+                // 学生情報を取得してリストに追加
                 Student student = new Student();
-                // ここでResultSetからStudentオブジェクトを作成し、リストに追加する処理を実装する
                 student.setNo(rs.getString("no"));
                 student.setName(rs.getString("name"));
                 student.setEntYear(rs.getInt("entYear"));
