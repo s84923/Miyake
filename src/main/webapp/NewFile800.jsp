@@ -1,29 +1,41 @@
 <%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@include file="../header.jsp"%>
+<%@include file="../sidebar.jsp"%>
 
 
-<p>成績管理</p>
+<h2 style="
+	width:79%;
+	background-color:#DCDCDC; 
+	padding: 5px; 
+	margin-bottom: 10%;
+	margin-left: 20%;">成績管理</h2>
 
-<form action="" method="post">
+<div style="text-align: center; overflow: hidden;">
+<form action="../studentlist/StudentCreate.action" method="post">
+	<label style="float: left; padding-left: 170px">入学年度</label><br> 
+		<select class="form-select" id="ent_year" name="ent_year" style="width: 700px; height: 40px;">
+			<option value="0">------</option>
+			<option value="2020">2020</option>
+			<option value="2021">2021</option>
+			<option value="2022">2022</option>
+			<option value="2023">2023</option>
+			<option value="2024">2024</option>
+		</select>
+		
+	<br>
 
-    <p>入学年度</p>
-    <select name="nyugaku">
-        <% 
-        for (int i = 2015; i <= 2030; i++) {
-            out.print("<option value=\"" + i + "\">" + i + "</option>");
-        }
-        %>
-    </select>
+    <label style="float: left; padding-left: 170px">クラス</label><br>
+		<select class="form-select" id="class_num" name="class_num" style="width: 700px; height: 40px;">
+			<option value="0">------</option>
+			<option value="131">131</option>
+			<option value="201">201</option>
+			<option value="101">101</option>
+		</select>
 
-    <p>クラス</p>
-    <select name="class">
-        <option value="101">101</option>
-        <option value="131">131</option>
-        <option value="201">201</option>
-    </select>
-
-    <p>科目</p>
-    <select name="subject">
+    <br>
+	<label style="float: left; padding-left: 170px">科目</label><br>
+		<select class="form-select" id="class_num" name="subject" style="width: 700px; height: 40px;">
+		
         <%
         Connection conn = null; 
         PreparedStatement pstmt = null;
@@ -57,17 +69,34 @@
         }
         %>
     </select>
+    <br>
 
-    <p>回数</p>
-    <select name="kaisu">
-        <% 
-        for (int i = 1; i <= 10; i++) {
-            out.print("<option value=\"" + i + "\">" + i + "</option>");
-        }
-        %>
-    </select>
+    <label style="float: left; padding-left: 170px">回数</label><br>
+		<select class="form-select" id="class_num" name="class_num" style="width: 700px; height: 40px;">
+			<option value="0">------</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</select>
 
-    <input type="submit" value="検索">
+    <br>
+
+	<input type="submit" value="検索" 
+			style="	color: white;
+					margin-top: 50px;
+					cursor: pointer;
+					height: 55px;
+					width: 97px; 
+					background-color: #87CEEB;
+					border-radius: 1rem;
+					border-style: none;">
 </form>
 
 <%
