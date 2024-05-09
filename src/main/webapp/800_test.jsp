@@ -38,7 +38,8 @@
 				<select class="form-select"id="select_class_num" name="f2" 
 				style="width: 200px; height: 30px; margin-left: 20px; border-radius: 10px; padding-left: 3px; font-size: 18px;">
 					<option value="0">------</option>
-					<option value="101">101</option>			
+					<option value="101">101</option>	
+					[]		
 					<option value="131">131</option>
 					<option value="201">201</option>
 				</select>
