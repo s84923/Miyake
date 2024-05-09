@@ -106,6 +106,7 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
             resultSelect = pstmtSelect.executeQuery();
 
             // 結果を表示
+            boolean found = false;
             while (resultSelect.next()) {
                 out.println("入学年度: " + resultSelect.getString("ENT_YEAR") + "<br>");
                 out.println("クラス: " + resultSelect.getString("CLASS_NUM") + "<br>");
@@ -114,6 +115,11 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
                 out.println("1回: " + (resultSelect.getString("POINT_1") != null ? resultSelect.getString("POINT_1") : "-") + "<br>");
                 out.println("2回: " + (resultSelect.getString("POINT_2") != null ? resultSelect.getString("POINT_2") : "-") + "<br>");
                 out.println("<br>");
+                found = true;
+            }
+
+            if (!found) {
+                out.println("学生情報が存在しませんでした。<br>");
             }
 
         } catch (Exception e) {
@@ -129,7 +135,7 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
         }
     }
 
-    // テキストボックスでの検索
+ // テキストボックスでの検索
     if (request.getParameter("searchByTextbox") != null) {
         String studentNo = request.getParameter("studentno");
 
@@ -143,23 +149,49 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
             connTextbox = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
 
             // SQLクエリを組み立てて実行
-            String sqlTextbox = "SELECT SUBJECT.NAME AS SUBJECT_NAME, SUBJECT.CD AS SUBJECT_CD, TEST.POINT, TEST.NO " +
-                                "FROM TEST " +
-                                "INNER JOIN SUBJECT ON TEST.SUBJECT_CD = SUBJECT.CD " +
-                                "WHERE STUDENT_NO = ?";
+            String sqlTextbox = "SELECT NAME FROM STUDENT WHERE NO = ?";
 
             pstmtTextbox = connTextbox.prepareStatement(sqlTextbox);
             pstmtTextbox.setString(1, studentNo);
-
+            
             resultTextbox = pstmtTextbox.executeQuery();
 
-            // 結果を表示
-            while (resultTextbox.next()) {
-                out.println("科目名: " + resultTextbox.getString("SUBJECT_NAME") + "<br>");
-                out.println("科目コード: " + resultTextbox.getString("SUBJECT_CD") + "<br>");
-                out.println("回数: " + resultTextbox.getString("NO") + "<br>");
-                out.println("点数: " + (resultTextbox.getString("POINT") != null ? resultTextbox.getString("POINT") : "-") + "<br>");
-                out.println("<br>");
+            // 学生の氏名を取得
+            String studentname = "";
+            boolean studentExists = resultTextbox.next(); // 学籍番号に対するデータが存在するかどうか
+
+            if (studentExists) {
+                studentname = resultTextbox.getString("NAME");
+
+                // テスト結果の取得
+                String sqlTestResults = "SELECT SUBJECT.NAME AS SUBJECT_NAME, SUBJECT.CD AS SUBJECT_CD, TEST.POINT, TEST.NO " +
+                                        "FROM TEST " +
+                                        "LEFT JOIN SUBJECT ON TEST.SUBJECT_CD = SUBJECT.CD " +
+                                        "WHERE STUDENT_NO = ?";
+
+                pstmtTextbox = connTextbox.prepareStatement(sqlTestResults);
+                pstmtTextbox.setString(1, studentNo);
+                resultTextbox = pstmtTextbox.executeQuery();
+
+                // 結果を表示
+                boolean found = false;
+                while (resultTextbox.next()) {
+                    out.println("科目名: " + resultTextbox.getString("SUBJECT_NAME") + "<br>");
+                    out.println("科目コード: " + resultTextbox.getString("SUBJECT_CD") + "<br>");
+                    out.println("回数: " + resultTextbox.getString("NO") + "<br>");
+                    out.println("点数: " + (resultTextbox.getString("POINT") != null ? resultTextbox.getString("POINT") : "-") + "<br>");
+                    out.println("<br>");
+                    found = true;
+                }
+
+                if (!found) {
+                    // 成績情報が見つからない場合の処理
+                    out.println("氏名: " + studentname +"(" + studentNo + ")" + "<br>");
+                    out.println("成績情報が存在しませんでした。<br>");
+                }
+            } else {
+                // 学籍番号に対するデータが存在しない場合の処理
+                out.println("学籍番号 " + studentNo + " に対するデータが存在しません。<br>");
             }
 
         } catch (Exception e) {
@@ -174,6 +206,8 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
             }
         }
     }
+
+
 }
 %>
 
