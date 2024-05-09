@@ -12,7 +12,7 @@
 
 
 <div style="text-align: center; overflow: hidden;">
-<form action="../student/StudentCreate.action" method="post">
+<form  method="post">
 	<label style="float: left; padding-left: 170px">入学年度</label><br> 
 		<select class="form-select" id="ent_year" name="ent_year" style="width: 700px; height: 40px;">
 			<option value="0">------</option>

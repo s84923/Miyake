@@ -10,10 +10,10 @@
     margin-left: 20%;">成績管理</h2>
 
 <div style="text-align: center; overflow: hidden;">
-    <form action="../student/StudentCreate.action" method="post" style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px;">
+    <form action="" method="post" style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px;">
         <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
             <label>入学年度</label><br> 
-            <select class="form-select" id="ent_year" name="ent_year" style="width: 100%;">
+            <select name="nyugaku" style="width: 100%;">
                 <option value="0">------</option>
                 <option value="2020">2020</option>
                 <option value="2021">2021</option>
@@ -25,7 +25,7 @@
         
         <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
             <label>クラス</label><br>
-            <select class="form-select" id="class_num" name="class_num" style="width: 100%;">
+            <select name="class" style="width: 100%;">
                 <option value="0">------</option>
                 <option value="131">131</option>
                 <option value="201">201</option>
@@ -35,7 +35,7 @@
         
         <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
             <label>科目</label><br>
-            <select class="form-select" id="subject" name="subject" style="width: 100%;">
+            <select name="subject" style="width: 100%;">
                 <%-- 科目名を動的に取得 --%>
                 <%
                 Connection conn = null; 
@@ -71,7 +71,7 @@
         
         <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
             <label>回数</label><br>
-            <select class="form-select" id="test_no" name="test_no" style="width: 100%;">
+            <select name="kaisu" style="width: 100%;">
                 <option value="0">------</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
