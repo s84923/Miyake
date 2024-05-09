@@ -1,119 +1,93 @@
-<%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
-<%@include file="../header.jsp"%>
-<%@include file="../sidebar.jsp"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*" %>
+<%@ include file="../header.jsp" %>
+<%@ include file="../sidebar.jsp" %>
 
+<h2 style="
+    width:79%;
+    background-color:#DCDCDC; 
+    padding: 5px; 
+    margin-bottom: 20px;
+    margin-left: 20%;">成績管理</h2>
 
-<h2 class="studentmanage"
-	style="
-	width:79%;
-	background-color:#DCDCDC; 
-	padding: 5px; 
-	margin-bottom: 5%;
-	margin-left: 20%;">成績管理</h2>
-<div style="width: 50%; margin-left: 30%">
-	<section class="me-4" style="width: 100%;">
-	<div class="my-2 text-end px-4" style="margin-bottom: 1rem; margin-left: 500px;">
-		<a href="../studentmanage/insert.jsp">新規登録</a>
-	</div>
-	<form action="../student/StudentList.action" method="post">
-	<div style="width: 700px;
-				height: 150px;
-				box-sizing: border-box;
- 				margin: 1em 0;
-  				padding: 3rem;
-  				border-radius: 1em;
-  				border: 2px solid gainsboro;">
-				<label>入学年度</label> 
-				<label style="padding-left: 150px;">クラス番号</label><br>
-		<div style="display: flex; align-items: center;">
-				<select class="form-select" id="select_ent_year" name="f1" 
-				style="width: 200px; height: 30px; border-radius: 10px; padding-left: 3px; font-size: 18px;">
-					<option value="0">------</option>
-					<option value="2020">2020</option>
-					<option value="2021">2021</option>
-					<option value="2022">2022</option>
-					<option value="2023">2023</option>
-					<option value="2024">2024</option>
-				</select> 
-				<select class="form-select"id="select_class_num" name="f2" 
-				style="width: 200px; height: 30px; margin-left: 20px; border-radius: 10px; padding-left: 3px; font-size: 18px;">
-					<option value="0">------</option>
-					<option value="101">101</option>	
-					[]		
-					<option value="131">131</option>
-					<option value="201">201</option>
-				</select>
-		
-
-    <br>
-	<label style=""padding-left: 150px;">科目</label><br>
-		<select class="form-select" id="class_num" name="subject" style="width: 700px; height: 40px;">
-		<input class="form-check-input" type="checkbox"id="select_is_attend" name="f3" value="true">
-			</div>
-			</div>		
-			</form>
-        <%
-        Connection conn = null; 
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try {
-            // データベースへの接続
-            Class.forName("org.h2.Driver");
-            conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
+<div style="text-align: center; overflow: hidden;">
+    <form action="../student/StudentCreate.action" method="post" style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px;">
+        <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+            <label>入学年度</label><br> 
+            <select class="form-select" id="ent_year" name="ent_year" style="width: 100%;">
+                <option value="0">------</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+            </select>
+        </div>
         
-            // 科目名を取得するクエリの実行
-            String query = "SELECT NAME FROM SUBJECT";
-            pstmt = conn.prepareStatement(query);
-            rs = pstmt.executeQuery();
+        <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+            <label>クラス</label><br>
+            <select class="form-select" id="class_num" name="class_num" style="width: 100%;">
+                <option value="0">------</option>
+                <option value="131">131</option>
+                <option value="201">201</option>
+                <option value="101">101</option>
+            </select>
+        </div>
+        
+        <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+            <label>科目</label><br>
+            <select class="form-select" id="subject" name="subject" style="width: 100%;">
+                <%-- 科目名を動的に取得 --%>
+                <%
+                Connection conn = null; 
+                PreparedStatement pstmt = null;
+                ResultSet rs = null;
 
-            while(rs.next()) {
-        %>
-                <option><%= rs.getString("NAME") %></option>
-        <%
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        %>
-    </select>
-    <br>
+                try {
+                    Class.forName("org.h2.Driver");
+                    conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
+                    String query = "SELECT NAME FROM SUBJECT";
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
 
-    <label style="float: left; padding-left: 170px">回数</label><br>
-		<select class="form-select" id="class_num" name="class_num" style="width: 700px; height: 40px;">
-			<option value="0">------</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-		</select>
+                    while (rs.next()) {
+                %>
+                        <option><%= rs.getString("NAME") %></option>
+                <%
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (rs != null) rs.close();
+                        if (pstmt != null) pstmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                %>
+            </select>
+        </div>
+        
+        <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+            <label>回数</label><br>
+            <select class="form-select" id="test_no" name="test_no" style="width: 100%;">
+                <option value="0">------</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
 
-    <br>
-
-	<input type="submit" value="検索" 
-			style="	color: white;
-					margin-top: 50px;
-					cursor: pointer;
-					height: 55px;
-					width: 97px; 
-					background-color: #87CEEB;
-					border-radius: 1rem;
-					border-style: none;">
-</form>
+        <input type="submit" value="検索" style="color: white; cursor: pointer; height: 40px; width: 97px; background-color: #87CEEB; border-radius: 1rem; border-style: none; margin-top: 20px;">
+    </form>
 
 <%
 
@@ -201,3 +175,5 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
 %>
 
 <%@include file="../footer.jsp"%>
+
+
