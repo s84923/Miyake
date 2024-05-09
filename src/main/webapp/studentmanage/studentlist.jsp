@@ -1,4 +1,4 @@
-1<%@page contentType="text/html;charset=UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8"%>
 <%@include file="../header.jsp"%>
 <%@include file="../sidebar.jsp"%>
 
@@ -6,8 +6,8 @@
 <h2 class="studentmanage"
 	style="
 	width:79%;
-	background-color:#DCDCDC; 
-	padding: 5px; 
+	background-color:#DCDCDC;
+	padding: 5px;
 	margin-bottom: 5%;
 	margin-left: 20%;">学生管理</h2>
 <div style="width: 50%; margin-left: 30%">
