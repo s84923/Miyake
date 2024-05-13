@@ -6,7 +6,7 @@
 <!-- セレクトボックスによる検索フォーム -->
 <form action="" method="post">
 
-    <p>成績一覧</p>
+    <p>入学年度</p>
     <select name="nyugaku">
         <% 
         for (int i = 2015; i <= 2030; i++) {
