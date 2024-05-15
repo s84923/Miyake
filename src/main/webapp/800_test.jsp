@@ -36,6 +36,8 @@
         <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
             <label>科目</label><br>
             <select name="subject" style="width: 100%;">
+            <option value="0">------</option>
+            
                 <%-- 科目名を動的に取得 --%>
                 <%
                 Connection conn = null; 
