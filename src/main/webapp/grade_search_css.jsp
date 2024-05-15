@@ -40,9 +40,11 @@
   <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
             <label>科目</label><br>
             <select name="subject" style="width: 100%;">
+            <option value="0">------</option>
+            
                 <%-- 科目名を動的に取得 --%>
                 <%
-                Connection conn = null; 
+                Connection conn = null;
                 PreparedStatement pstmt = null;
                 ResultSet rs = null;
 
@@ -82,7 +84,7 @@
     <form action="" method="post" style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px;">
            <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
     <p>学生番号</p>
-    <input type="text" name="studentno" style="width: 80%;">
+    <input type="text" name="studentno" placeholder="学生番号を入力してください" style="width: 80%;">
     <input type="submit" name="searchByTextbox" value="検索" style="color: white; cursor: pointer; height: 40px; width: 97px; background-color: #87CEEB; border-radius: 1rem; border-style: none; margin-top: 20px;">
 </form>
             
