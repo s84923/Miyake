@@ -24,9 +24,15 @@ public class Grade_management extends HttpServlet {
             out.println("<html>");
             out.println("<head><title>一括更新 - 受信</title></head>");
             out.println("<body>");
-            out.println("<h1>登録が完了しました。</h1>");
+            out.println("<h1>成績管理</h1>");
+            out.println("登録が完了しました。");
             out.println("</body>");
             out.println("</html>");
+            
+            out.println("<br>");
+            out.println("<a href=\"../grade_management.jsp\">戻る</a>");
+            out.println("<a href=\"../grade_search.jsp\">成績参照</a>");
+
         } finally {
             out.close();
         }
