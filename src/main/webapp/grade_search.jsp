@@ -1,76 +1,93 @@
 <%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" import="java.sql.*"%>
 <%@include file="../header.jsp"%>
+<%@ include file="../sidebar.jsp" %>
 
-<p>成績管理</p>
+<h2 style="
+    width:79%;
+    background-color:#DCDCDC; 
+    padding: 5px; 
+    margin-bottom: 20px;
+    margin-left: 20%;">成績管理</h2>
 
 <!-- セレクトボックスによる検索フォーム -->
-<form action="" method="post">
+<div style="text-align: center; overflow: hidden;">
+    <form action="" method="post" style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px;">
+        <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+            <label>入学年度</label><br> 
+            <select name="nyugaku" style="width: 100%;">
+                <option value="0">------</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+        </div>
 
-    <p>入学年度</p>
-    <select name="nyugaku">
-        <% 
-        for (int i = 2015; i <= 2030; i++) {
-            out.print("<option value=\"" + i + "\">" + i + "</option>");
-        }
-        %>
-    </select>
-
-    <p>クラス</p>
-    <select name="class">
-        <option value="101">101</option>
-        <option value="131">131</option>
-        <option value="201">201</option>
-    </select>
-
-    <p>科目</p>
-    <select name="subject">
-        <%
-        Connection conn = null; 
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try {
-            // データベースへの接続
-            Class.forName("org.h2.Driver");
-            conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
+        <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+            <label>クラス</label><br>
+            <select name="class" style="width: 100%;">
+                <option value="0">------</option>
+                <option value="131">131</option>
+                <option value="201">201</option>
+                <option value="101">101</option>
+            </select>
+        </div>
         
-            // 科目名を取得するクエリの実行
-            String query = "SELECT NAME FROM SUBJECT";
-            pstmt = conn.prepareStatement(query);
-            rs = pstmt.executeQuery();
+        <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+            <label>科目</label><br>
+            <select name="subject" style="width: 100%;">
+                <option value="0">------</option>
+                <%-- 科目名を動的に取得 --%>
+                <%
+                Connection conn = null;
+                PreparedStatement pstmt = null;
+                ResultSet rs = null;
 
-            while(rs.next()) {
-        %>
-                <option><%= rs.getString("NAME") %></option>
-        <%
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        %>
-    </select>
+                try {
+                    Class.forName("org.h2.Driver");
+                    conn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
+                    String query = "SELECT NAME FROM SUBJECT";
+                    pstmt = conn.prepareStatement(query);
+                    rs = pstmt.executeQuery();
 
-    <input type="submit" name="searchBySelect" value="セレクトボックスで検索">
-</form>
+                    while (rs.next()) {
+                %>
+                        <option><%= rs.getString("NAME") %></option>
+                <%
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (rs != null) rs.close();
+                        if (pstmt != null) pstmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                %>
+            </select>
+        </div>
 
-<br>
+        <input type="submit" name="searchBySelect" value="検索" style="color: white; cursor: pointer; height: 40px; width: 97px; background-color: #87CEEB; border-radius: 1rem; border-style: none; margin-top: 20px;">
+    </form>
 
-<!-- テキストボックスによる検索フォーム -->
-<form action="" method="post">
-    <p>学生番号</p>
-    <input type="text" name="studentno">
-    <input type="submit" name="searchByTextbox" value="テキストボックスで検索">
-</form>
+    <!-- テキストボックスによる検索フォーム -->
+    <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+        <form action="" method="post" style="max-width: 600px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px;">
+            <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
+                <p>学生番号</p>
+                <input type="text" name="studentno" placeholder="学生番号を入力してください" style="width: 80%;">
+                <input type="submit" name="searchByTextbox" value="検索" style="color: white; cursor: pointer; height: 40px; width: 97px; background-color: #87CEEB; border-radius: 1rem; border-style: none; margin-top: 20px;">
+            </div>
+        </form>
+    </div>
 
 <%
+boolean isFirstIteration = true; // Declare isFirstIteration variable
 
 if ("POST".equalsIgnoreCase(request.getMethod())) {
     // セレクトボックスでの検索
@@ -107,19 +124,36 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
 
             // 結果を表示
             boolean found = false;
-            while (resultSelect.next()) {
-                out.println("入学年度: " + resultSelect.getString("ENT_YEAR") + "<br>");
-                out.println("クラス: " + resultSelect.getString("CLASS_NUM") + "<br>");
-                out.println("学籍番号: " + resultSelect.getString("NO") + "<br>");
-                out.println("氏名: " + resultSelect.getString("NAME") + "<br>");
-                out.println("1回: " + (resultSelect.getString("POINT_1") != null ? resultSelect.getString("POINT_1") : "-") + "<br>");
-                out.println("2回: " + (resultSelect.getString("POINT_2") != null ? resultSelect.getString("POINT_2") : "-") + "<br>");
-                out.println("<br>");
-                found = true;
-            }
+            if (resultSelect.next()) {
+                out.println("<style>table { width: 50%; margin: 0 auto; border-collapse: collapse; } td { border: 1px solid black; padding: 5px; text-align: left; }</style>");
+                out.println("<table>");
+                out.println("<caption style='text-align: left;'>科目: " + subjectName + "</caption>");
+                out.println("<tr><th style=\"text-align: left;\">入学年度</th><th style=\"text-align: left;\">クラス</th><th style=\"text-align: left;\">学籍番号</th><th style=\"text-align: left;\">氏名</th><th style=\"text-align: left;\">1回</th><th style=\"text-align: left;\">2回</th></tr>");
 
-            if (!found) {
-                out.println("学生情報が存在しませんでした。<br>");
+                // 再度、クエリを実行し、テーブルに結果を表示
+                do {
+                    if (isFirstIteration) { // Check if it's the first iteration
+                        isFirstIteration = false; // Set isFirstIteration to false after the first iteration
+                    } else {
+                        out.println("<tr>");
+                        out.println("<td>" + resultSelect.getString("ENT_YEAR") + "</td>");
+                        out.println("<td>" + resultSelect.getString("CLASS_NUM") + "</td>");
+                        out.println("<td>" + resultSelect.getString("NO") + "</td>");
+                        out.println("<td>" + resultSelect.getString("NAME") + "</td>");
+                        out.println("<td>" + (resultSelect.getString("POINT_1") != null ? resultSelect.getString("POINT_1") : "-") + "</td>");
+                        out.println("<td>" + (resultSelect.getString("POINT_2") != null ? resultSelect.getString("POINT_2") : "-") + "</td>");
+                        out.println("</tr>");
+                        found = true;
+                    }
+                } while (resultSelect.next());
+
+                if (!found) {
+                    out.println("<tr><td colspan=\"6\">学生情報が存在しませんでした。</td></tr>");
+                }
+
+                out.println("</table>");
+            } else {
+                out.println("<p>学生情報が存在しませんでした。</p>");
             }
 
         } catch (Exception e) {
@@ -175,20 +209,33 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
 
                 // 結果を表示
                 boolean found = false;
-                while (resultTextbox.next()) {
-                    out.println("科目名: " + resultTextbox.getString("SUBJECT_NAME") + "<br>");
-                    out.println("科目コード: " + resultTextbox.getString("SUBJECT_CD") + "<br>");
-                    out.println("回数: " + resultTextbox.getString("NO") + "<br>");
-                    out.println("点数: " + (resultTextbox.getString("POINT") != null ? resultTextbox.getString("POINT") : "-") + "<br>");
-                    out.println("<br>");
-                    found = true;
+                if (resultTextbox.next()) {
+                    // テーブルの開始タグ
+                    out.println("<style>table { width: 50%; margin: 0 auto; border-collapse: collapse; } td { border: 1px solid black; padding: 5px; text-align: left; }</style>");
+                    out.println("<table>");
+                    out.println("<caption style='text-align: left;'>氏名: " + studentname + "(" + studentNo + ")" + "</caption>");
+                    out.println("<tr><th style='text-align: left;'>科目名</th><th style='text-align: left;'>科目コード</th><th style='text-align: left;'>回数</th><th style='text-align: left;'>点数</th></tr>");
+
+                    // テーブルに結果を表示
+                    do {
+                        out.println("<tr>");
+                        out.println("<td>" + resultTextbox.getString("SUBJECT_NAME") + "</td>");
+                        out.println("<td>" + resultTextbox.getString("SUBJECT_CD") + "</td>");
+                        out.println("<td>" + resultTextbox.getString("NO") + "</td>");
+                        out.println("<td>" + (resultTextbox.getString("POINT") != null ? resultTextbox.getString("POINT") : "-") + "</td>");
+                        out.println("</tr>");
+                        found = true;
+                    } while (resultTextbox.next());
+
+                    // テーブルの終了タグ
+                    out.println("</table>");
                 }
 
                 if (!found) {
                     // 成績情報が見つからない場合の処理
-                    out.println("氏名: " + studentname +"(" + studentNo + ")" + "<br>");
-                    out.println("成績情報が存在しませんでした。<br>");
+                    out.println("氏名: " + studentname +"(" + studentNo + ")" + "<br>成績情報が存在しませんでした。<br>");
                 }
+
             } else {
                 // 学籍番号に対するデータが存在しない場合の処理
                 out.println("学籍番号 " + studentNo + " に対するデータが存在しません。<br>");
@@ -206,8 +253,6 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
             }
         }
     }
-
-
 }
 %>
 

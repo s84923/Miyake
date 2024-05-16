@@ -36,8 +36,6 @@
         <div style="flex: 1 1 200px; margin-right: 20px; margin-bottom: 20px;">
             <label>科目</label><br>
             <select name="subject" style="width: 100%;">
-            <option value="0">------</option>
-            
                 <%-- 科目名を動的に取得 --%>
                 <%
                 Connection conn = null; 
@@ -114,17 +112,19 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
         connPost = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/zaiko", "sa", "");
 
         // SQLクエリを組み立てて実行
-        String sql = "SELECT STUDENT.ENT_YEAR, STUDENT.CLASS_NUM, STUDENT.NO, STUDENT.NAME, TEST.POINT " +
-                     "FROM STUDENT, SUBJECT, TEST " +
-                     "WHERE STUDENT.SCHOOL_CD = SUBJECT.SCHOOL_CD AND " +
-                     "      STUDENT.SCHOOL_CD = TEST.SCHOOL_CD AND " +
-                     "      STUDENT.NO = TEST.STUDENT_NO AND " +
-                     "      SUBJECT.CD = TEST.SUBJECT_CD AND " +
-                     "      STUDENT.CLASS_NUM = TEST.CLASS_NUM AND " +
-                     "      STUDENT.ENT_YEAR = ? AND " +
-                     "      STUDENT.CLASS_NUM = ? AND " +
-                     "      SUBJECT.NAME = ? AND " +
-                     "      TEST.NO = ?";
+       // SQLクエリを組み立てて実行
+	String sql = "SELECT STUDENT.ENT_YEAR, STUDENT.CLASS_NUM, STUDENT.NO, STUDENT.NAME, TEST.POINT " +
+             "FROM STUDENT " +
+             "LEFT JOIN TEST ON STUDENT.SCHOOL_CD = TEST.SCHOOL_CD AND " +
+             "                  STUDENT.NO = TEST.STUDENT_NO AND " +
+             "                  STUDENT.CLASS_NUM = TEST.CLASS_NUM " +
+             "LEFT JOIN SUBJECT ON STUDENT.SCHOOL_CD = SUBJECT.SCHOOL_CD " +
+             "WHERE STUDENT.ENT_YEAR = ? AND " +
+             "      STUDENT.CLASS_NUM = ? AND " +
+             "      SUBJECT.NAME = ? AND " +
+             "      TEST.NO = ?";
+
+
 
         pstmtPost = connPost.prepareStatement(sql);
         pstmtPost.setString(1, entYear);
@@ -145,7 +145,7 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
             out.println("氏名: " + result.getString("NAME") + "<br>");
 
             // テストポイントの入力フォーム
-            out.println("<form method=\"post\" action=\"/team_miyake/test/Grade_management\">");
+            out.println("<form method=\"post\" action=\"/team_miyake/test/updateallpoints\">");
             out.println("<input type=\"hidden\" name=\"studentNo\" value=\"" + result.getString("NO") + "\">");
             out.println("<input type=\"hidden\" name=\"subjectName\" value=\"" + subjectName + "\">");
             out.println("<input type=\"hidden\" name=\"testNo\" value=\"" + testNo + "\">");
@@ -154,7 +154,7 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
         }
 
         // 一括更新ボタン
-		out.println("<form method=\"post\" action=\"/team_miyake/test/Grade_management\">");
+		out.println("<form method=\"post\" action=\"/team_miyake/test/updateallpoints\">");
 		out.println("<input type=\"hidden\" name=\"nyugaku\" value=\"" + entYear + "\">");
         out.println("<input type=\"hidden\" name=\"class\" value=\"" + classNum + "\">");
         out.println("<input type=\"hidden\" name=\"subject\" value=\"" + subjectName + "\">");
