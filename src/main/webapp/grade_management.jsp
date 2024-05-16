@@ -145,7 +145,7 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
             out.println("氏名: " + result.getString("NAME") + "<br>");
 
             // テストポイントの入力フォーム
-            out.println("<form method=\"post\" action=\"/team_miyake/test/Grade_management\">");
+            out.println("<form method=\"post\" action=\"/team_miyake/test/grade_management\">");
             out.println("<input type=\"hidden\" name=\"studentNo\" value=\"" + result.getString("NO") + "\">");
             out.println("<input type=\"hidden\" name=\"subjectName\" value=\"" + subjectName + "\">");
             out.println("<input type=\"hidden\" name=\"testNo\" value=\"" + testNo + "\">");
@@ -154,7 +154,7 @@ if ("POST".equalsIgnoreCase(request.getMethod())) {
         }
 
         // 一括更新ボタン
-		out.println("<form method=\"post\" action=\"/team_miyake/test/Grade_management\">");
+		out.println("<form method=\"post\" action=\"/team_miyake/test/grade_management\">");
 		out.println("<input type=\"hidden\" name=\"nyugaku\" value=\"" + entYear + "\">");
         out.println("<input type=\"hidden\" name=\"class\" value=\"" + classNum + "\">");
         out.println("<input type=\"hidden\" name=\"subject\" value=\"" + subjectName + "\">");

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/test/updateallpoints")
+@WebServlet("/test/grade_management")
 public class Grade_management extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class Grade_management extends HttpServlet {
             out.println("<html>");
             out.println("<head><title>一括更新 - 受信</title></head>");
             out.println("<body>");
-            out.println("<h1>一括更新 - 受信</h1>");
+            out.println("<h1>登録が完了しました。</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
